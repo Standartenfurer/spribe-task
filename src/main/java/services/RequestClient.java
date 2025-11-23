@@ -1,68 +1,61 @@
 package services;
 
 
+import com.github.cliftonlabs.json_simple.JsonObject;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
 
-public class RequestClient {
-
-    private static RequestClient instance;
-
-    private RequestClient() {
-    }
+public abstract class RequestClient {
 
 
-    //TODO looks unnecessary
-    public static RequestClient request() {
-        if (instance == null) {
-            instance = new RequestClient();
-        }
-        return instance;
-    }
-
-    //TODO check mb not need synchronization
-    public static synchronized RequestClient getClient() {
-        //make this singleton object, not to create request client each time
-        return new RequestClient();
-    }
-
-
-    public Response get(DTOCallable dto) {
+    //TODO will behave good during multithread, but I am reparsing the object back and forth...
+    public Response get(String endpointURL, JsonObject queryParams) {
         return   given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
                 .when()
-                .get()
+                .queryParams(queryParams)
+                .get(endpointURL)
                 .then()
                 .extract()
                 .response();
     }
 
-    public Response post(DTOCallable dto) {
+    public Response post(String endpointURL, JsonObject body, JsonObject queryParam) {
         return given()
-                .contentType("application/json")
-                .body(dto)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
                 .when()
-                .post()
+                .body(body)
+                .queryParams(queryParam)
+                .post(endpointURL)
                 .then()
                 .extract()
                 .response();
     }
 
-    public Response put(DTOCallable dto) {
+    public Response patch(String endpointURL, JsonObject body) {
+        RequestSpecification specification = given();
         return given()
-                .contentType("application/json")
-                .body(dto)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(body)
                 .when()
-                .put()
+                .body(body)
+                .patch(endpointURL)
                 .then()
                 .extract()
                 .response();
     }
 
-    public Response delete(DTOCallable dto) {
+    public Response delete(String endpointURL, JsonObject body) {
         return given()
                 .when()
-                .delete()
+                .body(body)
+                .delete(endpointURL)
                 .then()
                 .extract()
                 .response();

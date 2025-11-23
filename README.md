@@ -1,2 +1,21 @@
 # spribe-task
 test task for api framework
+Test description below
+Completion time - 5 business days (deadline - next tuesday)
+link http://3.68.165.45/swagger-ui.html#/player-controller
+(if the link doesn't work properly, please email me)
+Stack:
+Java 11+, testNG (use Assertions from testNg only), RestAssured
+Don't use:
+Lombok, AssertJ, BDD solutions
+Assignment:
+Write a framework for app testing.
+Run several positive and several negative autotests for each controller.
+Find possible bugs. Cover critical ones with autotests.
+Make the test run in 3 threads (Middle and Senior levels).
+Tests should be written as if you were working with a performance system, where every change is completely risky.
+Upload the project to a public Git repository and create a link.
+Additional:
+*Add Allure
+**Add logging
+***Add framework configuration (app url, thread count, etc.)

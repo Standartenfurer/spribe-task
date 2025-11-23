@@ -2,7 +2,6 @@ package dtos;
 
 import dtos.utility.Gender;
 import dtos.utility.Role;
-import services.DTOCallable;
 
 public class PlayerCreateResponseDTO implements DTOCallable {
 
