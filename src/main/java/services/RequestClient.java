@@ -12,6 +12,10 @@ public abstract class RequestClient {
 
 
     //TODO will behave good during multithread, but I am reparsing the object back and forth...
+
+    //TODO add logging
+    //TODO need null checks?
+    //TODO still be abstract?
     public Response get(String endpointURL, JsonObject queryParams) {
         return   given()
                 .contentType(ContentType.JSON)
