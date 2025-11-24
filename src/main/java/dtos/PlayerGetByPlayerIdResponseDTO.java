@@ -1,8 +1,10 @@
 package dtos;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import dtos.utility.Gender;
 import dtos.utility.Role;
 
+@JsonDeserialize
 public class PlayerGetByPlayerIdResponseDTO implements DTOCallable {
 
     private Integer age;
@@ -27,6 +29,16 @@ public class PlayerGetByPlayerIdResponseDTO implements DTOCallable {
         this.password = password;
         this.role = role;
         this.screenName = screenName;
+    }
+
+    public PlayerGetByPlayerIdResponseDTO(PlayerGetByPlayerIdResponseDTO playerDto) {
+        this.age = playerDto.age;
+        this.gender = playerDto.gender;
+        this.id = playerDto.id;
+        this.login = playerDto.login;
+        this.password = playerDto.password;
+        this.role = playerDto.role;
+        this.screenName = playerDto.screenName;
     }
 
     public Integer getAge() {

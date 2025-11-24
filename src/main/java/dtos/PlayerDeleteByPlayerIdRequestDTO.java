@@ -1,11 +1,11 @@
 package dtos;
 
-public class PlayerDeleteRequestDTO implements DTOCallable {
+public class PlayerDeleteByPlayerIdRequestDTO implements DTOCallable {
 
     ///Don't adding builder, easier to init with constructor
     private Integer playerId;
 
-    public PlayerDeleteRequestDTO(Integer playerId) {
+    public PlayerDeleteByPlayerIdRequestDTO(Integer playerId) {
         this.playerId = playerId;
     }
 

@@ -1,31 +1,41 @@
 package services;
 
 import dtos.DTOCallable;
+import dtos.utility.Endpoints;
+import dtos.utility.Role;
 import io.restassured.response.Response;
 
-public class PlayerService extends RequestClient    {
+public class PlayerService extends RequestClient {
 
-        //BUG: using post method for resource creation (added to issue list)
-        public Response createPlayer(DTOCallable createPlayerDTO) {
-                return get(createPlayerDTO,"");
-        }
+    //add deserialization here
+    //TODO: using post method for resource creation (added to issue list)
+    public Response createPlayer(DTOCallable createPlayerDTO) {
+        return get(Endpoints.CREATE_PLAYER.getValue(), createPlayerDTO);
+    }
 
-        //BUG: using post request for getting resource (added to issue list)
-        public Response getPlayer(DTOCallable getPlayerDTO) {
-                return post(getPlayerDTO,"");
-        }
+    //TODO: using post request for getting resource (added to issue list)
+    //
+    public Response getPlayer(DTOCallable getPlayerDTO) {
+        return post(Endpoints.GET_PLAYER_BY_ID.getValue(), getPlayerDTO);
+    }
 
-        public Response deletePlayer(DTOCallable deletePlayerDTO) {
-                return delete(deletePlayerDTO,"");
-        }
+    //TODO implementation will be used after fix
 
-    /*    public Response getAllPlayers() {
-                return get();
-        }
+    public Response getPlayer(String playerID) {
+        return get(Endpoints.GET_PLAYER_BY_ID.getValue() + playerID);
+    }
 
-        public Response updatePlayer(DTOCallable updatePlayerDTO, "") {
-                return patch()
-        }
+    public Response getAllPlayers() {
+        return get(Endpoints.GET_ALL_PLAYERS.getValue());
+    }
 
-     */
+    public Response updatePlayer(String playerId, Role role, DTOCallable playerUpdateDTO) {
+        return patch(Endpoints.GET_PLAYER_BY_ID.getValue() + role.getRoleName() + "/" + playerId, playerUpdateDTO);
+    }
+
+    public Response deletePlayer(Role editor, DTOCallable deletePlayerDTO) {
+        return delete(Endpoints.DELETE_PLAYER.getValue() + editor.getRoleName(), deletePlayerDTO);
+    }
+
+
 }
