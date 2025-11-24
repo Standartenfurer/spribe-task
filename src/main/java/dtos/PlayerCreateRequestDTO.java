@@ -3,7 +3,8 @@ package dtos;
 import dtos.utility.Gender;
 import dtos.utility.Role;
 
-public class PlayerUpdateRequestDTO implements DTOCallable {
+public class PlayerCreateRequestDTO implements DTOCallable {
+
     private Integer age;
 
     private Gender gender;
@@ -12,27 +13,32 @@ public class PlayerUpdateRequestDTO implements DTOCallable {
 
     private String password;
 
-    private Role role;
-
     private String screenName;
 
-    public PlayerUpdateRequestDTO(Integer age, Gender gender, String login, String password, Role role, String screenName) {
+    private Role role;
+
+    private String editor;
+
+    public PlayerCreateRequestDTO(Integer age, Gender gender, String login, String password, String screenName, Role role, String editor) {
         this.age = age;
         this.gender = gender;
         this.login = login;
         this.password = password;
-        this.role = role;
         this.screenName = screenName;
+        this.role = role;
+        this.editor = editor;
     }
 
-    private PlayerUpdateRequestDTO(Builder playerUpdateRequestDTOBuilder) {
-        this.age = playerUpdateRequestDTOBuilder.age;
-        this.gender = playerUpdateRequestDTOBuilder.gender;
-        this.login = playerUpdateRequestDTOBuilder.login;
-        this.password = playerUpdateRequestDTOBuilder.password;
-        this.screenName = playerUpdateRequestDTOBuilder.screenName;
-        this.role = playerUpdateRequestDTOBuilder.role;
+    private PlayerCreateRequestDTO(Builder playerCreateRequestDTOBuilder) {
+        this.age = playerCreateRequestDTOBuilder.age;
+        this.gender = playerCreateRequestDTOBuilder.gender;
+        this.login = playerCreateRequestDTOBuilder.login;
+        this.password = playerCreateRequestDTOBuilder.password;
+        this.screenName = playerCreateRequestDTOBuilder.screenName;
+        this.role = playerCreateRequestDTOBuilder.role;
+        this.editor = playerCreateRequestDTOBuilder.editor;
     }
+
 
     public Integer getAge() {
         return age;
@@ -66,6 +72,14 @@ public class PlayerUpdateRequestDTO implements DTOCallable {
         this.password = password;
     }
 
+    public String getScreenName() {
+        return screenName;
+    }
+
+    public void setScreenName(String screenName) {
+        this.screenName = screenName;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -74,12 +88,19 @@ public class PlayerUpdateRequestDTO implements DTOCallable {
         this.role = role;
     }
 
-    public String getScreenName() {
-        return screenName;
+    public String getEditor() {
+        return editor;
     }
 
-    public void setScreenName(String screenName) {
-        this.screenName = screenName;
+    public void setEditor(String editor) {
+        this.editor = editor;
+    }
+
+    private PlayerCreateRequestDTO() {
+    }
+
+    public static Builder getBuilder() {
+        return new PlayerCreateRequestDTO().new Builder();
     }
 
 
@@ -89,12 +110,12 @@ public class PlayerUpdateRequestDTO implements DTOCallable {
         private String login = "";
         private String password = "";
         private String screenName = "";
-
         private Role role;
+
+        private String editor;
 
         private Builder() {
         }
-
 
         public Builder setAge(Integer age) {
             this.age = age;
@@ -126,8 +147,13 @@ public class PlayerUpdateRequestDTO implements DTOCallable {
             return this;
         }
 
-        public PlayerUpdateRequestDTO build() {
-            return new PlayerUpdateRequestDTO(this);
+        public Builder setEditor(String editor) {
+            this.editor = editor;
+            return this;
+        }
+
+        public PlayerCreateRequestDTO build() {
+            return new PlayerCreateRequestDTO(this);
         }
                     /*
 
@@ -138,4 +164,5 @@ public class PlayerUpdateRequestDTO implements DTOCallable {
         this.role = role;
      */
     }
+
 }

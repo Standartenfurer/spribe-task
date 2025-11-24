@@ -29,6 +29,9 @@ public class PlayerCreateResponseDTO implements DTOCallable {
         this.role = role;
     }
 
+    private PlayerCreateResponseDTO() {
+    }
+
     public Integer getId() {
         return id;
     }
