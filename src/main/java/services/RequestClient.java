@@ -13,6 +13,7 @@ import java.util.HashMap;
 import static io.restassured.RestAssured.given;
 
 /**
+ *
  * 1. query is treated as JsonObject
  * 2. headers are treated as as JsonObject
  * 3. path are tread as url parts
@@ -21,6 +22,11 @@ import static io.restassured.RestAssured.given;
  * 6. rest methods should be moved to separate interfaces to ensure better bckw compty
  */
 
+
+/**
+ *
+ * IMPORTANT! I've automatically used given().when().then() style (aka bdd style) during method implementations, didn't change, since noticed it quite late
+* */
 public abstract class RequestClient {
 
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -28,8 +34,7 @@ public abstract class RequestClient {
 
     //TODO add logging
     //TODO need null checks?
-    //TODO still be abstract?
-    //
+
 
     public Response get(String endpointURL, HashMap<String, String> queryParams) {
         return given().contentType(ContentType.JSON).accept(ContentType.JSON).
@@ -86,8 +91,8 @@ public abstract class RequestClient {
 
     public Response post(String endpointURL, DTOCallable body) {
         return given().contentType(ContentType.JSON).accept(ContentType.JSON).
-                when().
                 body(getHashMapFromDTO(body)).
+                when().
                 post(endpointURL).
                 then().
                 extract().

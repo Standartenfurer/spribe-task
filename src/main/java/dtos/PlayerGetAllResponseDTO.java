@@ -1,7 +1,11 @@
 package dtos;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.ArrayList;
 
+@JsonDeserialize
+//Do i really need this?
 public class PlayerGetAllResponseDTO implements DTOCallable {
 
     private ArrayList<PlayerItemDTO> playerItems;
