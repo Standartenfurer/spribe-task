@@ -1,5 +1,4 @@
-# spribe-task
-test task for api framework
+Submitting a test task
 Test description below
 Completion time - 5 business days (deadline - next tuesday)
 link http://3.68.165.45/swagger-ui.html#/player-controller
