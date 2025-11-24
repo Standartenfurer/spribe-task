@@ -8,11 +8,12 @@ public class PropertyLoader {
 
     private static Properties properties;
 
-    private PropertyLoader(){}
+    private PropertyLoader() {
+    }
 
     public static Properties getProperties() {
         if (properties == null) {
-            properties = new Properties();
+            properties = loadProperties();
             return properties;
         }
         return properties;

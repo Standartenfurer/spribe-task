@@ -52,6 +52,15 @@ public abstract class RequestClient {
                 response();
     }
 
+    public Response get(String endpointURL) {
+        return given().contentType(ContentType.JSON).accept(ContentType.JSON).
+                when().
+                get(endpointURL).
+                then().
+                extract().
+                response();
+    }
+
 
     public Response post(String endpointURL, HashMap<String, String> queryParam, DTOCallable body) {
 
@@ -96,7 +105,6 @@ public abstract class RequestClient {
                 response();
     }
 
-
     public Response delete(String endpointURL, DTOCallable body) {
         return given().
                 when().
@@ -108,7 +116,7 @@ public abstract class RequestClient {
     }
 
     public HashMap<String, String> getHashMapFromDTO(DTOCallable dtoCallable) {
-        HashMap<String, String> queryParams = new HashMap<String, String>();
+        HashMap<String, String> queryParams;
         try {
             String json = mapper.writeValueAsString(dtoCallable);
             queryParams = mapper.readValue(json, new TypeReference<HashMap<String, String>>() {
