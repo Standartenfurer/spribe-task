@@ -18,4 +18,8 @@ public class LogUtil {
         logger.error(error);
     }
 
+    public static void warn(String warning) {
+        logger.warn(warning);
+    }
+
 }
